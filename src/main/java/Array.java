@@ -38,6 +38,26 @@ public class Array {
         return result;
     }
 
+    public int[] solution3(int[] A, int K) {
+        int size = A.length;
+        int[] result = new int[size];
+
+        //  System.out.println(Arrays.toString(A));
+
+        for (int iteration = 1; iteration <= K; iteration++) {
+            for (int i = size - 1; i > 0; i--) {
+                int current = A[i];
+                A[i] = A[i - 1];
+                A[i - 1] = current;
+            }
+        }
+
+        //System.out.println(Arrays.toString(A));
+        result = A;
+        return result;
+    }
+
+
     public boolean sameStarChar(String str) {
 
         for (int i = 1; i < str.length() - 1; i++) {
@@ -73,25 +93,6 @@ public class Array {
 
         return false;
 
-    }
-
-    public int[] solution3(int[] A, int K) {
-        int size = A.length;
-        int[] result = new int[size];
-
-        //  System.out.println(Arrays.toString(A));
-
-        for (int iteration = 1; iteration <= K; iteration++) {
-            for (int i = size - 1; i > 0; i--) {
-                int current = A[i];
-                A[i] = A[i - 1];
-                A[i - 1] = current;
-            }
-        }
-
-        //System.out.println(Arrays.toString(A));
-        result = A;
-        return result;
     }
 
     public boolean modThree(int[] nums) {
@@ -185,11 +186,53 @@ public class Array {
             if ((nums[i] == 4 && nums[i + 1] == 4)) {
                 four++;
             }
-
         }
-        if (two == four) {
-            return false;
-        }
-        return true;
+        return (two == four);
     }
+
+    // Given an array of ints, return true if there is a 1 in the array
+    // with a 2 somewhere later in the array.
+    public boolean has12(int[] nums) {
+
+        boolean count = false;
+
+        for (int num : nums) {
+
+            if (num == 1) {
+                count = true;
+            }
+            if (num == 2 && count) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Return the sum of the numbers in the array, except ignore sections
+    // of numbers starting with a 6 and extending to the next 7
+    // (every 6 will be followed by at least one 7). Return 0 for no numbers.
+    public int sum67(int[] nums) {
+
+        boolean flagOfSixe = false;
+        int sum = 0;
+
+        for (int num : nums) {
+
+            if (num == 6) {
+                flagOfSixe = true;
+                continue;
+            }
+            if (num == 7 && flagOfSixe) {
+                flagOfSixe = false;
+                continue;
+            }
+            if (!flagOfSixe) {
+                sum += num;
+            }
+        }
+        return sum;
+    }
+
+
 }
