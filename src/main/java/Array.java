@@ -152,5 +152,44 @@ public class Array {
         }
     }
 
+    public boolean isEverywhere(int[] nums, int val) {
 
+        int count = 0;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+
+            if (nums[i] + 1 == nums[i + 1]) {
+                count++;
+            }
+
+        }
+        if (count == val) {
+            return true;
+        }
+        return false;
+    } // doesn't work..
+
+    public boolean either24(int[] nums) {
+        if (nums.length < 2) {
+            return false;
+        }
+
+        int two = 0;
+        int four = 0;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+
+            if ((nums[i] == 2 && nums[i + 1] == 2)) {
+                two++;
+            }
+            if ((nums[i] == 4 && nums[i + 1] == 4)) {
+                four++;
+            }
+
+        }
+        if (two == four) {
+            return false;
+        }
+        return true;
+    }
 }
