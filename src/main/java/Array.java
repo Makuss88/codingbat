@@ -42,8 +42,6 @@ public class Array {
         int size = A.length;
         int[] result = new int[size];
 
-        //  System.out.println(Arrays.toString(A));
-
         for (int iteration = 1; iteration <= K; iteration++) {
             for (int i = size - 1; i > 0; i--) {
                 int current = A[i];
@@ -52,9 +50,7 @@ public class Array {
             }
         }
 
-        //System.out.println(Arrays.toString(A));
-        result = A;
-        return result;
+        return A;
     }
 
 
@@ -124,11 +120,7 @@ public class Array {
             b[i] = nums[nums.length - len + i];
         }
 
-        if (Arrays.equals(a, b)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Arrays.equals(a, b);
 
 
     }
@@ -146,11 +138,7 @@ public class Array {
             }
         }
 
-        if (one > four) {
-            return true;
-        } else {
-            return false;
-        }
+        return one > four;
     }
 
     public boolean isEverywhere(int[] nums, int val) {
@@ -164,10 +152,7 @@ public class Array {
             }
 
         }
-        if (count == val) {
-            return true;
-        }
-        return false;
+        return count == val;
     } // doesn't work..
 
     public boolean either24(int[] nums) {
@@ -233,7 +218,6 @@ public class Array {
         }
         return sum;
     }
-
 
     // Given an array of ints, return true if the value 3 appears in the array
     // exactly 3 times, and no 3's are next to each other.
