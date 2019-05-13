@@ -246,7 +246,6 @@ public class Array {
 
     }
 
-
     // Return an array that is "left shifted" by one -- so {6, 2, 5, 3}
     // returns {2, 5, 3, 6}. You may modify and return the given array, or return a new array
     public int[] shiftLeft(int[] nums) {
@@ -262,6 +261,92 @@ public class Array {
 
         return nums;
     }
+
+    // Given an array of ints, return true if every 2 that appears in the array is next to another 2.
+    public boolean twoTwo(int[] nums) {
+
+        boolean flag = true;
+
+        for (int i = 0; i < nums.length; i++) {
+
+            if (nums[i] == 2) {
+
+                if ((i != 0 && nums[i - 1] == 2) || (nums.length - 1 > i && nums[i + 1] == 2)) {
+                    flag = true;
+                    i++;
+                } else {
+                    flag = false;
+                }
+            }
+        }
+        return flag;
+    }
+
+    // For each multiple of 10 in the given array, change all the values following it to be
+    // that multiple of 10, until encountering another multiple of 10.
+    // So {2, 10, 3, 4, 20, 5} yields {2, 10, 10, 10, 20, 20}.
+    public int[] tenRun(int[] nums) {
+
+        int[] result = new int[nums.length];
+        // boolean flag = true;
+        int temp;
+
+        for (int i = 0; i < nums.length; i++) {
+
+            if (nums[i] % 10 != 0) {
+                result[i] = nums[i];
+                continue;
+            } else {
+                temp = nums[i];
+            }
+            result[i] = temp;
+
+        }
+        return result;
+    } //TODO
+
+    // Given a non-empty array of ints, return a new array containing the elements from the
+    // original array that come before the first 4 in the original array. The original array will
+    // contain at least one 4. Note that it is valid in java to create an array of length 0.
+    public int[] pre4(int[] nums) {
+
+        int four = 0;
+        for (int num : nums) {
+            if (num == 4) {
+                break;
+            }
+            four++;
+        }
+
+        int[] result = new int[four];
+
+        System.arraycopy(nums, 0, result, 0, four);
+
+        return result;
+    }
+
+    // Given a non-empty array of ints, return a new array containing the elements from the
+    // original array that come after the last 4 in the original array. The original array will
+    // contain at least one 4. Note that it is valid in java to create an array of length 0.
+    public int[] post4(int[] nums) {
+
+        int four = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 4) {
+                four = i;
+            }
+        }
+
+        int[] result = new int[nums.length - four - 1];
+        for (int i = 0; i < nums.length - four - 1; i++) {
+            result[i] = nums[four + i + 1];
+        }
+
+        return result;
+
+    }
+
+
 
 
 }
