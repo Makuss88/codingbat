@@ -362,7 +362,7 @@ public class Array {
 
         for (int i = 1; i < nums.length - 1; i++) {
 
-            if (nums[i] == val) {
+            if (nums[i] == val && nums[i - 1] != val && nums[i + 1] != val) {
                 if (nums[i - 1] > nums[i + 1]) {
                     result[i] = nums[i - 1];
                     continue;
@@ -374,7 +374,7 @@ public class Array {
             result[i] = nums[i];
         }
         return result;
-    } // in my opi this option is good -  and website say - BAD!
+    }
 
 
 }
