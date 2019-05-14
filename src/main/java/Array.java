@@ -376,5 +376,32 @@ public class Array {
         return result;
     }
 
+    // Return an array that contains the exact same numbers as the given array, but rearranged so that
+    // all the zeros are grouped at the start of the array. The order of the non-zero numbers does not
+    // matter. So {1, 0, 0, 1} becomes {0 ,0, 1, 1}. You may modify and return the given array or make a new array.
+    public int[] zeroFront(int[] nums) {
+
+        if (nums.length == 0) {
+            return nums;
+        }
+
+        int zeros = 0;
+        int temp = 0;
+        int result[] = new int[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                zeros++;
+                result[i] = nums[i];
+            } else {
+                temp = nums[i];
+            }
+        }
+
+        for (int i = zeros; i < nums.length; i++) {
+            result[i] = temp;
+        }
+        return result;
+    }
 
 }

@@ -4,5 +4,6 @@ public class Main {
         Array array = new Array();
 
         Strings strings = new Strings();
+
     }
 }
