@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        Array array = new Array();
+        Array2 array = new Array2();
 
-        Strings strings = new Strings();
+        Strings2 strings = new Strings2();
 
     }
 }

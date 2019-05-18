@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Array {
+public class Array2 {
 
     public int[] solution(int[] A, int K) {
 
