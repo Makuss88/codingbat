@@ -141,19 +141,17 @@ public class Array {
         return one > four;
     }
 
+
+    // We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in the array,
+    // at least one of the pair is that value. Return true if the given value is everywhere in the array.
     public boolean isEverywhere(int[] nums, int val) {
 
-        int count = 0;
-
         for (int i = 0; i < nums.length - 1; i++) {
-
-            if (nums[i] + 1 == nums[i + 1]) {
-                count++;
-            }
-
+            if (nums[i] != val && nums[i + 1] != val)
+                return false;
         }
-        return count == val;
-    } // doesn't work..
+        return true;
+    }
 
     public boolean either24(int[] nums) {
         if (nums.length < 2) {
@@ -287,23 +285,21 @@ public class Array {
     // So {2, 10, 3, 4, 20, 5} yields {2, 10, 10, 10, 20, 20}.
     public int[] tenRun(int[] nums) {
 
-        int[] result = new int[nums.length];
-        // boolean flag = true;
-        int temp;
+        int temp = 0;
+        boolean ten = false;
 
         for (int i = 0; i < nums.length; i++) {
-
-            if (nums[i] % 10 != 0) {
-                result[i] = nums[i];
-                continue;
-            } else {
+            if (nums[i] % 10 == 0) {
                 temp = nums[i];
+                ten = true;
+            } else {
+                if (ten) {
+                    nums[i] = temp;
+                }
             }
-            result[i] = temp;
-
         }
-        return result;
-    } //TODO
+        return nums;
+    }
 
     // Given a non-empty array of ints, return a new array containing the elements from the
     // original array that come before the first 4 in the original array. The original array will
@@ -422,6 +418,86 @@ public class Array {
 
     }
 
+    // Return a version of the given array where each zero value in the array is replaced by the largest odd value to
+    // the right of the zero in the array. If there is no odd value to the right of the zero, leave the zero as a zero.
+    public int[] zeroMax(int[] nums) {
 
+        int max;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == 0) {
+                max = 0;
+                for (int k = i + 1; k < nums.length; k++) {
+
+                    if (nums[k] > max && nums[k] % 2 == 1) {
+                        max = nums[k];
+                    }
+                }
+                if (max != 0) {
+                    nums[i] = max;
+                }
+            }
+        }
+        return nums;
+
+    }
+
+    // Return an array that contains the exact same numbers as the given array, but rearranged so that all the even
+    // numbers come before all the odd numbers. Other than that, the numbers can be in any order. You may modify and
+    // return the given array, or make a new array.
+    public int[] evenOdd(int[] nums) {
+
+        int odd = 0;
+        int even = 0;
+        int result[] = new int[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                odd++;
+            }
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                result[even] = nums[i];
+                even++;
+            } else {
+                result[odd] = nums[i];
+                odd++;
+            }
+        }
+
+        return result;
+    }
+
+    // This is slightly more difficult version of the famous FizzBuzz problem which is sometimes given as a first
+    // problem for job interviews. (See also: FizzBuzz Code.) Consider the series of numbers beginning at start and
+    // running up to but not including end, so for example start=1 and end=5 gives the series 1, 2, 3, 4. Return a new
+    // String[] array containing the string form of these numbers, except for multiples of 3, use "Fizz" instead of the
+    // number, for multiples of 5 use "Buzz", and for multiples of both 3 and 5 use "FizzBuzz". In Java,
+    // String.valueOf(xxx) will make the String form of an int or other type. This version is a little more complicated
+    // than the usual version since you have to allocate and index into an array instead of just printing, and we vary
+    // the start/end instead of just always doing 1..100.
+    public String[] fizzBuzz(int start, int end) {
+
+        String[] result = new String[end - start];
+
+        int count = 0;
+
+        for (int i = start; i < end; i++) {
+
+            if (i % 5 == 0 && i % 3 == 0) {
+                result[count] = "FizzBuzz";
+            } else if (i % 5 == 0) {
+                result[count] = "Buzz";
+            } else if (i % 3 == 0) {
+                result[count] = "Fizz";
+            } else {
+                result[count] = String.valueOf(i);
+            }
+            count++;
+        }
+        return result;
+    }
 
 }
