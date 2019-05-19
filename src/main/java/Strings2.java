@@ -220,6 +220,22 @@ public class Strings2 {
         return (str.equals("xyz"));
     }
 
+    // A sandwich is two pieces of bread with something in between. Return the string that is between the first
+    // and last appearance of "bread" in the given string, or return the empty string "" if there are not two
+    // pieces of bread.
+    public String getSandwich(String str) {
+
+        int firstBread = -1;
+        int lastBread = -1;
+
+        firstBread = str.indexOf("bread");
+        lastBread = str.lastIndexOf("bread");
+
+        if (firstBread != -1 && lastBread != -1 && firstBread != lastBread)
+            return str.substring(firstBread + 5, lastBread);
+        return "";
+    }
+
     // Returns true if for every '*' (star) in the string, if there are chars both immediately before and after
     // the star, they are the same.
     public boolean sameStarChar(String str) {
@@ -233,6 +249,11 @@ public class Strings2 {
         }
         return true;
     }
+
+    // Given a string, compute a new string by moving the first char to come after the next two chars, so "abc"
+    // yields "bca". Repeat this process for each subsequent group of 3 chars, so "abcdef" yields "bcaefd".
+    // Ignore any group of fewer than 3 chars at the end.
+
 
 
     public String zipZap(String str) {
