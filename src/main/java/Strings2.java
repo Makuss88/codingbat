@@ -252,10 +252,19 @@ public class Strings2 {
 
     // Given a string, compute a new string by moving the first char to come after the next two chars, so "abc"
     // yields "bca". Repeat this process for each subsequent group of 3 chars, so "abcdef" yields "bcaefd".
-    // Ignore any group of fewer than 3 chars at the end.
+    // Ignore any group of fewer than 3 chars at the end
+    public String oneTwo(String str) {
 
+        String result = "";
 
+        for (int i = 0; i < str.length() - 2; i = i + 3) {
+            result = result + str.substring(i + 1, i + 3) + str.substring(i, i + 1);
+        }
+        return result;
+    }
 
+    // Look for patterns like "zip" and "zap" in the string -- length-3, starting with 'z' and ending with 'p'.
+    // Return a string where for all such words, the middle letter is gone, so "zipXzap" yields "zpXzp".
     public String zipZap(String str) {
 
         if (str.length() <= 2) {
@@ -264,16 +273,61 @@ public class Strings2 {
 
         String result = "";
 
-        for (int i = 0; i < str.length() - 2; i++) {
+        for (int i = 0; i < str.length() - 1; i++) {
 
             if (str.charAt(i) == 'z' && str.charAt(i + 2) == 'p') {
                 result += ("zp");
                 i = i + 2;
             } else {
                 result += str.charAt(i);
+                if (i == str.length() - 2) {
+                    result += str.substring(str.length() - 1);
+                }
             }
         }
 
         return result;
     }
+
+    // Return a version of the given string, where for every star (*) in the string the star and the chars
+    // immediately to its left and right are gone. So "ab*cd" yields "ad" and "ab**cd" also yields "ad".
+    public String starOut(String str) {
+
+        if (str.length() == 0) {
+            return "";
+        }
+
+        if (str.length() == 1 && str.charAt(0) != '*') {
+            return str;
+        }
+
+        String result = "";
+
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == '*') {
+                if (str.charAt(i + 1) != '*') {
+                    i = i + 1;
+                }
+            } else {
+                if (str.charAt(i + 1) == '*') {
+                    continue;
+                }
+                result = result + str.charAt(i);
+            }
+        }
+
+        result = result + str.charAt(str.length() - 1);
+
+        if (result.charAt(result.length() - 1) == '*') {
+            return result.substring(0, result.length() - 1);
+        }
+
+        if (str.charAt(str.length() - 2) == '*') {
+            result = result.substring(0, result.length() - 1);
+        }
+
+        return result;
+    }
+
+
 }
