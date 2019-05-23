@@ -329,5 +329,38 @@ public class Strings2 {
         return result;
     }
 
+    // Given a string and a non-empty word string, return a version of the original String where all
+    // chars have been replaced by pluses ("+"), except for appearances of the word string which
+    // are preserved unchanged.
+    public String plusOut(String str, String word) {
+
+        String result = "";
+
+        for (int i = 0; i < str.length(); i++) {
+
+            if (str.substring(i).startsWith(word)) {
+                result = result + word;
+                i = i + word.length() - 1;
+            } else {
+                result = result + "+";
+            }
+        }
+        return result;
+    }
+
+    // Given a string and a non-empty word string, return a string made of each char just before and
+    // just after every appearance of the word in the string. Ignore cases where there is no char before
+    // or after the word, and a char may be included twice if it is between two words.
+    public String wordEnds(String str, String word) {
+
+        String result = "";
+
+
+
+
+
+        return result;
+    }
+
 
 }
