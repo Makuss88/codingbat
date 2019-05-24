@@ -39,8 +39,8 @@ public class Array3 {
             return nums.length;
         }
 
-        int leftCount = 0;
-        int rightCount = 0;
+        int leftCount = 1;
+        int rightCount = 1;
         int leftNumber = nums[0];
         int rightNumber = nums[nums.length - 1];
         boolean right = true;
