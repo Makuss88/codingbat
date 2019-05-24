@@ -14,9 +14,9 @@ public class Array3 {
         int leftNumber = nums[0];
         int rightNumber = nums[nums.length - 1];
 
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] == leftNumber) {
-                leftCount = i;
+                leftCount = i + 1;
             }
         }
 
@@ -32,6 +32,7 @@ public class Array3 {
             return rightCount;
         }
     }
+
     // the same method, but in one loop - it's faster
     public int maxSpan2(int[] nums) {
 
@@ -45,9 +46,9 @@ public class Array3 {
         int rightNumber = nums[nums.length - 1];
         boolean right = true;
 
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] == leftNumber) {
-                leftCount = i;
+                leftCount = i + 1;
             }
             if (nums[i] == rightNumber && right) {
                 right = false;
