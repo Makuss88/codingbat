@@ -355,11 +355,24 @@ public class Strings2 {
 
         String result = "";
 
+        if (str.startsWith(word) && str.length()!=word.length()) {
+            result = str.substring(word.length(), word.length() + 1);
+        }
 
+        for (int i = 1; i < str.length() - word.length() + 1; i++) {
 
+            if (str.substring(i, i + word.length()).equals(word)) {
+                result += str.substring(i - 1, i);
+            }
 
+            if (i < str.length() - word.length() && str.substring(i, i + word.length()).equals(word)) {
+                result += str.substring(i + word.length(), i + word.length() + 1);
+            }
+        }
 
         return result;
+
+
     }
 
 
