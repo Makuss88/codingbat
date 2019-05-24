@@ -5,5 +5,6 @@ public class Main {
 
         Strings2 strings = new Strings2();
 
+        Array3 array3 = new Array3();
     }
 }
