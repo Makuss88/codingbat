@@ -143,5 +143,51 @@ public class Array3 {
         return false;
     }
 
+    // Given two arrays of ints sorted in increasing order, outer and inner, return true if all of the numbers in
+    // inner appear in outer. The best solution makes only a single "linear" pass of both arrays, taking advantage
+    // of the fact that both arrays are already in sorted order.
+    public boolean linearIn(int[] outer, int[] inner) {
+
+        int innerLength = 0;
+
+        for (int i = 0; i < inner.length; i++) {
+            for (int j = i; j < outer.length; j++) {
+                if (inner[i] == outer[j]) {
+                    innerLength++;
+                    break;
+                }
+            }
+        }
+        return innerLength == inner.length;
+    }
+
+    // Given n>=0, create an array length n*n with the following pattern, shown here for n=3 :
+    // {0, 0, 1,    0, 2, 1,    3, 2, 1} (spaces added to show the 3 groups).
+    public int[] squareUp(int n) {
+
+        int result[] = new int[n * n];
+        int counter = n;
+        int number = 1;
+
+        for (int i = n * n - 1; i >= 0; i--) {
+
+            if ((i + 1) % n == 0) {
+                number = 1;
+                counter--;
+            }
+            if (counter < number - 1) {
+                result[i] = 0;
+                continue;
+            }
+            result[i] = number;
+            number++;
+        }
+
+        return result;
+    }
+
+
+
+
 
 }
