@@ -2,7 +2,7 @@ public class Array3 {
 
     // Consider the leftmost and righmost appearances of some value in an array. We'll say that the "span"
     // is the number of elements between the two inclusive. A single value has a span of 1. Returns the largest span
-    // found in the given array. (Efficiency is not a priority.)\
+    // found in the given array. (Efficiency is not a priority)
     public int maxSpan(int[] nums) {
 
         if (nums.length < 2) {
@@ -88,7 +88,6 @@ public class Array3 {
         return nums;
     }
 
-
     // (This is a slightly harder version of the fix34 problem.) Return an array that contains exactly the same numbers
     // as the given array, but rearranged so that every 4 is immediately followed by a 5. Do not move the 4's, but
     // every other number may move. The array contains the same number of 4's and 5's, and every 4 has a number after
@@ -137,6 +136,26 @@ public class Array3 {
             }
 
             if (left == right) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // the same method, faster in my opinion...
+    public boolean canBalance2(int[] nums) {
+
+
+        int sum = 0;
+        int left = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            left += nums[i];
+            if (left == sum - left) {
                 return true;
             }
         }
@@ -195,12 +214,63 @@ public class Array3 {
         int count = 0;
 
         for (int i = 0; i < n; i++) {
-            for (int j = 1; j <= i; j++) {
+            for (int j = 1; j < i + 2; j++) {
                 result[count] = j;
                 count++;
             }
         }
         return result;
+    }
+
+    // We'll say that a "mirror" section in an array is a group of contiguous elements such that somewhere in the
+    // array, the same group appears in reverse order. For example, the largest mirror section in
+    // {1, 2, 3, 8, 9, 3, 2, 1} is length 3 (the {1, 2, 3} part). Return the size of the largest mirror section
+    // found in the given array.
+    public int maxMirror(int[] nums) {
+
+        int result = 0;
+
+        for (int start = 0; start < nums.length; start++) {
+
+            for (int begin = nums.length - 1; begin >= 0; begin--) {
+
+                int size = 0;
+                int i = start;
+                int j = begin;
+
+                while (i < nums.length && j >= 0 && nums[i] == nums[j]) {
+                    size++;
+                    i++;
+                    j--;
+                }
+
+                result = Math.max(result, size);
+            }
+        }
+
+        return result;
+    }
+
+    // Say that a "clump" in an array is a series of 2 or more adjacent elements of the same value.
+    // Return the number of clumps in the given array.
+    public int countClumps(int[] nums) {
+
+        int result = 0;
+        boolean flag = true;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i + 1]) {
+                if (flag) {
+                    result++;
+                    flag = false;
+                }
+            } else {
+                flag = true;
+            }
+        }
+
+        return result;
+
     }
 
 

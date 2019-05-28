@@ -6,11 +6,5 @@ public class Main {
         Strings2 strings = new Strings2();
 
         Array3 array3 = new Array3();
-
-        int test = 4;
-
-        for (int i : array3.seriesUp(test)) {
-            System.out.print(i + " ");
-        }
     }
 }
