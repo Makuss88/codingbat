@@ -145,7 +145,6 @@ public class Array3 {
     // the same method, faster in my opinion...
     public boolean canBalance2(int[] nums) {
 
-
         int sum = 0;
         int left = 0;
 
@@ -157,6 +156,9 @@ public class Array3 {
             left += nums[i];
             if (left == sum - left) {
                 return true;
+            }
+            if (left > sum - left) {
+                return false;
             }
         }
         return false;
