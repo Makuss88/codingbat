@@ -127,5 +127,51 @@ public class String3 {
         }
         return result;
     }
+
+    // Given a string, look for a mirror image (backwards) string at both the beginning and end of the given string.
+    // In other words, zero or more characters at the very begining of the given string, and at the very end of the
+    // string in reverse order (possibly overlapping). For example, the string "abXYZba" has the mirror end "ab".
+    public String mirrorEnds(String string) {
+
+        String result = "";
+
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == string.charAt(string.length() - 1 - i)) {
+                result = string.substring(0, i + 1);
+            } else {
+                break;
+            }
+        }
+        return result;
+    }
+
+
+    // Given a string, return the length of the largest "block" in the string. A block is a run of
+    // adjacent chars that are the same.
+    public int maxBlock(String str) {
+
+        int result = 0;
+        int tempResult = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            if (i == 0) {
+                result = 1;
+                tempResult = 1;
+            } else {
+                if (str.charAt(i) == str.charAt(i - 1)) {
+                    tempResult++;
+                    if (result < tempResult) {
+                        result = tempResult;
+                    }
+                }
+                else {
+                    tempResult = 1;
+                }
+            }
+        }
+        return result;
+    }
+
+
 }
 
