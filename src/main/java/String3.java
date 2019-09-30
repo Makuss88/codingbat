@@ -178,16 +178,16 @@ public class String3 {
     public int sumNumbers(String str) {
 
         int sum = 0;
-        String tmp = "";
+        String temp = "";
 
         for (int i = 0; i < str.length(); i++) {
             if (Character.isDigit(str.charAt(i))) {
                 if (i < str.length() - 1 && Character.isDigit(str.charAt(i + 1))) {
-                    tmp += str.charAt(i);
+                    temp += str.charAt(i);
                 } else {
-                    tmp += str.charAt(i);
-                    sum += Integer.parseInt(tmp);
-                    tmp = "";
+                    temp += str.charAt(i);
+                    sum += Integer.parseInt(temp);
+                    temp = "";
                 }
             }
         }
