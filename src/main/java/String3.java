@@ -163,8 +163,7 @@ public class String3 {
                     if (result < tempResult) {
                         result = tempResult;
                     }
-                }
-                else {
+                } else {
                     tempResult = 1;
                 }
             }
@@ -172,6 +171,49 @@ public class String3 {
         return result;
     }
 
+
+    // Given a string, return the sum of the numbers appearing in the string, ignoring all other characters.
+    // A number is a series of 1 or more digit chars in a row. (Note: Character.isDigit(char) tests if a char is
+    // one of the chars '0', '1', .. '9'. Integer.parseInt(string) converts a string to an int.)
+    public int sumNumbers(String str) {
+
+        int sum = 0;
+        String tmp = "";
+
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {
+                if (i < str.length() - 1 && Character.isDigit(str.charAt(i + 1))) {
+                    tmp += str.charAt(i);
+                } else {
+                    tmp += str.charAt(i);
+                    sum += Integer.parseInt(tmp);
+                    tmp = "";
+                }
+            }
+        }
+        return sum;
+    }
+
+    // Given a string, return a string where every appearance of the lowercase word "is" has been replaced
+    // with "is not". The word "is" should not be immediately preceeded or followed by a letter -- so
+    // for example the "is" in "this" does not count. (Note: Character.isLetter(char) tests if a char is a letter.)
+    public String notReplace(String str) {
+
+        StringBuilder sb = new StringBuilder().append(" ").append(str).append(" ");
+
+        String a = "";
+
+        for (int i = 0; i < sb.length() - 2; i++) {
+            if (!Character.isLetter(sb.charAt(i)) &&
+                    sb.charAt(i + 1) == 'i' &&
+                    sb.charAt(i + 2) == 's' &&
+                    !Character.isLetter(sb.charAt(i + 3))) {
+                sb.insert(i + 3, " not");
+                i += 5;
+            }
+        }
+        return sb.substring(1, sb.length() - 1);
+    }
 
 }
 
