@@ -10,3 +10,4 @@
 *.tar.gz
 *.rar
 
+/src/main/java/zad.java
